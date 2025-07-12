@@ -8,6 +8,7 @@ def call(String projectName, String imageTag) {
         )
     ]){
         sh "docker login -u ${dockerHubUser} -p ${dockerHubPass}"
+        sh "docker image tag ${projectName}:${imageTag} ${dockerHubUser}/${projectName}:${imageTag}"
         sh "docker push ${dockerHubUser}/${projectName}:${imageTag}"
     }
 }
